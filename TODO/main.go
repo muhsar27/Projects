@@ -18,4 +18,12 @@ func main() {
 		return
 	}
 
+	var taskList []Todo
+	command := args[1]
+	taskName := args[2]
+
+	if command == "add" {
+		taskList.Task = taskName
+	}
+
 }
