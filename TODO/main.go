@@ -18,17 +18,4 @@ func main() {
 		return
 	}
 
-	instruction := args[1]
-
-	var taskList []string
-
-	if instruction == "add" {
-		task := args[2]
-		taskList = append(taskList, task)
-	}
-
-	if instruction == "list" {
-		fmt.Println(taskList)
-	}
-
 }
