@@ -21,7 +21,11 @@ func main() {
 	if len(args) < 1 {
 		return
 	}
-	TaskList, _ := os.ReadFile("tasks.json")
+	var TaskList []Todo
+
+	data, _ := os.ReadFile("tasks.json")
+
+	json.Unmarshal(data, &TaskList)
 	switch args[0] {
 	case "add":
 		task := args[1]
@@ -38,11 +42,7 @@ func main() {
 	default:
 		fmt.Print("Nothing for you\n")
 	}
-
-	data, _ := json.Marshal(TaskList)
-
-	os.WriteFile("tasks.json", data, 0644)
-
-	fmt.Println(TaskList)
+	newshi, _ := json.Marshal(TaskList)
+	os.WriteFile("tasks.json", newshi, 0644)
 
 }
