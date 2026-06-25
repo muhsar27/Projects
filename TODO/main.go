@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 )
@@ -20,7 +21,7 @@ func main() {
 	if len(args) < 1 {
 		return
 	}
-	var TaskList []Todo
+	TaskList, _ := os.ReadFile("tasks.json")
 	switch args[0] {
 	case "add":
 		task := args[1]
@@ -35,8 +36,12 @@ func main() {
 		TaskList = append(TaskList, newTodo)
 
 	default:
-		fmt.Print("Fuck off \n")
+		fmt.Print("Nothing for you\n")
 	}
+
+	data, _ := json.Marshal(TaskList)
+
+	os.WriteFile("tasks.json", data, 0644)
 
 	fmt.Println(TaskList)
 
