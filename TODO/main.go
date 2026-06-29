@@ -38,7 +38,12 @@ func main() {
 
 		newTodo := Todo{Entry: task, Done: status}
 		TaskList = append(TaskList, newTodo)
-
+	case "list":
+		data, err := os.ReadFile("tasks.json")
+		if err != nil {
+			fmt.Println("Unable to read file")
+		}
+		fmt.Println(data)
 	default:
 		fmt.Print("Nothing for you\n")
 	}
